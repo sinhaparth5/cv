@@ -84,13 +84,13 @@ $seo = [
         "image": "<?= $seo['image'] ?>",
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Wrocław",
-            "addressCountry": "Poland"
+            "addressLocality": "Oxford",
+            "addressCountry": "United Kingdom"
         },
         "sameAs": [
-            "https://github.com/bartoszjarocki",
-            "https://linkedin.com/in/bartoszjarocki",
-            "https://twitter.com/bartoszjarocki"
+            "https://github.com/sinhaparth5",
+            "https://www.linkedin.com/in/parth-sinha18",
+            "https://x.com/sinhaparth555"
         ]
     }
     </script>
@@ -103,11 +103,11 @@ $seo = [
                     <h1>Parth Sinha</h1>
                     <p class="description">Detail-oriented Full Stack Engineer dedicated to building high-quality products.</p>
                     <div class="location">
-                        <a class="profile-location" href="https://parthsinha.com" target="_blank">
+                        <a class="profile-location" href="https://www.google.com/maps/place/Oxford" target="_blank">
                             <div class="contact-link">
                                 <img src="assets/icons/browser.png" />
                             </div>
-                            <p>Wrocław, Poland, CET</p> 
+                            <p>Oxford, United Kingdom</p> 
                         </a>
                     </div>
                     
