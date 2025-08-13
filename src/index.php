@@ -68,10 +68,10 @@ $seo = [
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="assets/css/style.css" as="style">
-    <link rel="preload" href="assets/js/app.js" as="script">
+    <link rel="preload" href="assets/css/style.min.css" as="style">
+    <link rel="preload" href="assets/js/app.min.js" as="script">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -139,6 +139,6 @@ $seo = [
         </div>
     </main>
 
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/app.min.js"></script>
 </body>
 </html>
