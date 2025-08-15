@@ -1,19 +1,5 @@
-:root {
-    --primary-color: #667eea;
-    --text-primary: #1e293b;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-accent: #f1f5f9;
-    --border-light: #e2e8f0;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
-    --spacing: 1rem;
-    --spacing-lg: 2rem;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-// Reset
 * {
     margin: 0;
     padding: 0;
@@ -21,169 +7,170 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     line-height: 1.6;
-    color: var(--text-primary);
-    background-color: var(--bg-secondary);
+    color: black;
+    background-color: #ffffff;
 }
 
-// Layout
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
 .container {
-    max-width: 1200px;
+    position: relative;
     margin: 0 auto;
-    padding: var(--spacing-lg);
-    
-    @media (max-width: 768px) {
-        padding: var(--spacing);
-    }
+    scroll-margin-top: 3rem;
+    overflow: auto;
+    padding: 1rem;
 }
 
-// Header
-.header {
+.content {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 42rem;
+    background-color: white;
+}
+
+.content > * + * {
+    margin-top: 2rem;
+}
+
+.header-section {
     display: flex;
-    align-items: center;
-    gap: var(--spacing-lg);
-    background: var(--bg-primary);
-    padding: var(--spacing-lg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    margin-bottom: var(--spacing-lg);
-    
-    @media (max-width: 768px) {
-        flex-direction: column;
-        text-align: center;
-    }
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
 .profile-info {
     flex: 1;
 }
 
-.profile-image {
-    flex-shrink: 0;
-}
-
-.avatar-placeholder {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, var(--primary-color), #764ba2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-// Typography
-h1 {
-    font-size: 2.5rem;
+.profile-info h1 {
+    font-size: 1.875rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, var(--primary-color), #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    
-    @media (max-width: 768px) {
-        font-size: 2rem;
-    }
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing);
-    color: var(--text-primary);
-}
-
-h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
     margin-bottom: 0.5rem;
 }
 
 .description {
-    color: var(--text-muted);
-    margin-bottom: var(--spacing);
-}
-
-// Components
-.section {
-    background: var(--bg-primary);
-    padding: var(--spacing-lg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    margin-bottom: var(--spacing-lg);
+    font-size: 0.875rem;
+    color: black;
+    margin-bottom: 0.25rem;
+    text-wrap: pretty;
 }
 
 .location {
-    color: var(--text-muted);
-    margin-bottom: var(--spacing);
+    font-size: 0.75rem;
+    color: black;
+}
+
+.location a {
+    text-decoration: none;
+    color: #000;
+}
+
+.location a:hover {
+    text-decoration: underline;
 }
 
 .contact-links {
     display: flex;
+    gap: 0.5rem;
     flex-wrap: wrap;
-    gap: var(--spacing);
-    
-    @media (max-width: 768px) {
-        justify-content: center;
-    }
 }
 
 .contact-link {
-    text-decoration: none;
-    color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    background: var(--bg-accent);
-    border-radius: var(--border-radius);
-    transition: all 0.2s ease;
-    
-    &:hover {
-        background: var(--primary-color);
-        color: white;
-        transform: translateY(-2px);
-    }
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing);
-}
-
-.skill-category {
-    h3 {
-        margin-bottom: 0.5rem;
-    }
-}
-
-.skill-tags {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.skill-tag {
-    background: #e0e7ff;
-    color: #3730a3;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    text-decoration: none;
+    color: black;
     font-size: 0.875rem;
-    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
 }
 
-.footer {
-    text-align: center;
-    padding: var(--spacing-lg);
-    color: var(--text-muted);
-    border-top: 1px solid var(--border-light);
-    margin-top: var(--spacing-lg);
+.contact-link img {
+    width: 20px;
+    height: 20px;
+}
+
+.contact-link:hover {
+    background-color: #f3f4f6;
+}
+
+.profile-image {
+    flex-shrink: 0;
+}
+
+.profile-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
+.about-info {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+}
+
+.about-info h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.about-info .about-description {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-wrap: pretty;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+#result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    display: none;
+}
+
+.profile-location {
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 4rem;
+    }
+}
+
+@media print {
+    .container {
+        padding: 2.75rem;
+    }
+    
+    .content > * + * {
+        margin-top: 1rem;
+    }
 }

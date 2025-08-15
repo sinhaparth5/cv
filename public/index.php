@@ -1,69 +1,52 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
 
-require_once '../vendor/autoload.php';
+use Slim\Factory\AppFactory;
+use Slim\Views\Twig;
+use Slim\Views\TwigMiddleware;
 
-use Flight;
-use Latte\Engine;
-use App\AssetManager;
+if ($_SERVER['REQUEST_URI'] === '/api/data') {
+    header('Content-Type: application/json');
+    echo json_encode(['message' => 'Hello from PHP!', 'time' => date('H:i:s')]);
+    exit;
+}
 
-// Initialize Latte
-$latte = new Engine();
-$latte->setTempDirectory('../cache/latte');
+$app = AppFactory::create();
+$app->addErrorMiddleware(true, true, true);
 
-// Initialize Asset Manager  
-$assetManager = new AssetManager();
+$twig = Twig::create(__DIR__ . '/../templates', ['cache' => false, 'debug' => true]);
+$app->add(TwigMiddleware::create($app, $twig));
 
-// Routes
-Flight::route('/', function() use ($latte, $assetManager) {
-    // Compile assets
-    $cssFile = $assetManager->compileSCSS(['main.scss']);
-    $jsFile = $assetManager->minifyJS(['main.js']);
-
-    // Portfolio data
+$app->get('/', function ($request, $response, $args) {
+    $view = Twig::fromRequest($request);
+    
+    $seo = [
+        'title' => 'Parth Sinha - Full Stack Engineer',
+        'description' => 'Detail-oriented Full Stack Engineer dedicated to building high-quality products. Specializing in modern web technologies and scalable solutions.',
+        'keywords' => 'Full Stack Engineer, Web Developer, PHP, JavaScript, React, Node.js, Software Engineer',
+        'author' => 'Parth Sinha',
+        'url' => 'https://parthsinha.com',
+        'image' => $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/assets/images/profile.png',
+        'type' => 'profile',
+        'locale' => 'en_US',
+        'site_name' => 'Parth Sinha Portfolio'
+    ];
+    
     $data = [
-        'personal' => [
+        'seo' => $seo,
+        'profile' => [
             'name' => 'Parth Sinha',
-            'title' => 'Full Stack Engineer', 
             'description' => 'Detail-oriented Full Stack Engineer dedicated to building high-quality products.',
-            'location' => [
-                'city' => 'Oxford',
-                'country' => 'United Kingdom'
-            ],
-            'email' => 'sinhaparth555@gmail.com',
-            'phone' => '+447306179724',
-            'github' => 'https://github.com/sinhaparth5',
-            'linkedin' => 'https://www.linkedin.com/in/parth-sinha18/',
-            'twitter' => 'https://x.com/sinhaparth555'
-        ],
-        'about' => 'Frontend-focused Full Stack Engineer specializing in high-performance React applications, scalable Node.js services, and real-time collaboration systems.',
-        'skills' => [
-            'Frontend' => ['React', 'Vue.js', 'TypeScript', 'HTML5', 'CSS3'],
-            'Backend' => ['Node.js', 'PHP', 'Python', 'Express.js', 'REST APIs'],
-            'Database' => ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis'],
-            'DevOps' => ['Docker', 'AWS', 'Nginx', 'CI/CD']
-        ],
-        'currentYear' => date('Y'),
-        'initials' => strtoupper(substr('Parth Sinha', 0, 1) . substr('Sinha', 0, 1)),
-        'assets' => [
-            'css' => $cssFile,
-            'js' => $jsFile
+            'location' => 'Oxford, United Kingdom',
+            'about' => 'Frontend-focused Full Stack Engineer specializing in high-performance React applications, scalable Node.js services, and real-time collaboration systems. Experienced in technical architecture design and remote team leadership.'
         ]
     ];
     
-    echo $latte->renderToString('../templates/portfolio.latte', $data);
+    return $view->render($response, 'index.twig', $data);
 });
 
-// Serve cached assets
-Flight::route('/cache/@file', function($file) {
-    $filePath = 'cache/' . $file;
-    if (file_exists($filePath)) {
-        $mimeType = mime_content_type($filePath);
-        header('Content-Type: ' . $mimeType);
-        header('Cache-Control: public, max-age=31536000');
-        readfile($filePath);
-        exit;
-    }
-    Flight::notFound();
+$app->get('/{path:.*}', function ($request, $response, $args) {
+    return $response->withHeader('Location', '/')->withStatus(302);
 });
 
-Flight::start();
+$app->run();
