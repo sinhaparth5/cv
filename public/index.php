@@ -26,7 +26,7 @@ $app->get('/', function ($request, $response, $args) {
         'keywords' => 'Full Stack Engineer, Web Developer, PHP, JavaScript, React, Node.js, Software Engineer',
         'author' => 'Parth Sinha',
         'url' => 'https://cv.parthsinha.com',
-        'image' => $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/assets/images/profile.webp',
+        'image' => 'https://' . $_SERVER['HTTP_HOST'] . '/assets/images/profile.webp',
         'type' => 'profile',
         'locale' => 'en_US',
         'site_name' => 'Parth Sinha Portfolio'
