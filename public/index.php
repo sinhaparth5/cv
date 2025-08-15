@@ -25,7 +25,7 @@ $app->get('/', function ($request, $response, $args) {
         'description' => 'Detail-oriented Full Stack Engineer dedicated to building high-quality products. Specializing in modern web technologies and scalable solutions.',
         'keywords' => 'Full Stack Engineer, Web Developer, PHP, JavaScript, React, Node.js, Software Engineer',
         'author' => 'Parth Sinha',
-        'url' => 'https://parthsinha.com',
+        'url' => 'https://cv.parthsinha.com',
         'image' => $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/assets/images/profile.png',
         'type' => 'profile',
         'locale' => 'en_US',
