@@ -41,6 +41,9 @@ WORKDIR /var/www/html
 COPY --from=builder /app/vendor ./vendor
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/templates ./templates
+COPY --from=builder /app/.htaccess ./public/.htaccess
+COPY --from=builder /app/robots.txt ./public/robots.txt
+COPY --from=builder /app/sitemap.xml ./public/sitemap.xml
 COPY composer.json ./
 
 RUN chown -R nginx:nginx /var/www/html && \
