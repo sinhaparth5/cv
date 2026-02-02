@@ -1,6 +1,6 @@
 function showPage(page) {
     const content = document.getElementById('content');
-    
+
     if (page === 'home') {
         content.innerHTML = `
             <h2>Welcome!</h2>
@@ -26,7 +26,7 @@ function loadData() {
     fetch('/api/data')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('result').innerHTML = 
+            document.getElementById('result').innerHTML =
                 `<strong>${data.message}</strong><br>Time: ${data.time}`;
             document.getElementById('result').style.display = 'block';
         })
