@@ -15,10 +15,15 @@ if (!is_dir(__DIR__ . '/public/js')) {
 
 echo "📝 Compiling SCSS...\n";
 try {
+    $scssFile = __DIR__ . '/assets/scss/main.scss';
+    if (!file_exists($scssFile)) {
+        throw new RuntimeException("SCSS file not found: $scssFile");
+    }
+
     $scss = new Compiler();
     $scss->setOutputStyle(\ScssPhp\ScssPhp\OutputStyle::COMPRESSED);
-    
-    $scssContent = file_get_contents(__DIR__ . '/assets/scss/main.scss');
+
+    $scssContent = file_get_contents($scssFile);
     $compiledCss = $scss->compileString($scssContent)->getCss();
     
     $minifier = new Minify\CSS();
@@ -34,7 +39,12 @@ try {
 
 echo "📦 Minifying JavaScript...\n";
 try {
-    $minifier = new Minify\JS(__DIR__ . '/assets/js/main.js');
+    $jsFile = __DIR__ . '/assets/js/main.js';
+    if (!file_exists($jsFile)) {
+        throw new RuntimeException("JavaScript file not found: $jsFile");
+    }
+
+    $minifier = new Minify\JS($jsFile);
     $minifiedJs = $minifier->minify();
     
     file_put_contents(__DIR__ . '/public/js/main.min.js', $minifiedJs);

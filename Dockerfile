@@ -35,19 +35,22 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 COPY php-fpm.conf /etc/php83/php-fpm.d/www.conf
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN mkdir -p /var/www/html /run/php
+RUN mkdir -p /var/www/html /run/php /var/www/html/var/twig_cache
 WORKDIR /var/www/html
 
 COPY --from=builder /app/vendor ./vendor
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/templates ./templates
+COPY --from=builder /app/data ./data
 COPY --from=builder /app/.htaccess ./public/.htaccess
 COPY --from=builder /app/robots.txt ./public/robots.txt
 COPY --from=builder /app/sitemap.xml ./public/sitemap.xml
-COPY composer.json ./
 
 RUN chown -R nginx:nginx /var/www/html && \
     chmod -R 755 /var/www/html
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:8000/ || exit 1
 
 EXPOSE 8000
 

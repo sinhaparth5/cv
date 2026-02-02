@@ -37,7 +37,8 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     
-    <link rel="preload" href="/css/main.min.css" as="style">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="/js/main.min.js" as="script">
     <link rel="stylesheet" href="/css/main.min.css">
     
@@ -80,17 +81,17 @@
                     </div>
                     
                     <div class="contact-links">
-                        <a href="https://parthsinha.com" class="contact-link" target="_blank"><img src="assets/icons/browser.png" alt="Link to the website" /></a>
-                        <a href="mailto:sinhaparth555@gmail.com" class="contact-link" target="_blank"><img src="assets/icons/mail.png" alt="Link to the email" /></a>
-                        <a href="tel:+447306179724" class="contact-link" target="_blank"><img src="assets/icons/phone.png" alt="Link to the mobile number" /></a>
-                        <a href="https://github.com/sinhaparth5" class="contact-link" target="_blank"><img src="assets/icons/github.png" alt="Link to the github repo" /></a>
-                        <a href="https://www.linkedin.com/in/parth-sinha18/" class="contact-link" target="_blank"><img src="assets/icons/linkedin.png" alt="Link to the linkedin profile" /></a>
-                        <a href="https://x.com/sinhaparth555" class="contact-link" target="_blank"><img src="assets/icons/x.svg" alt="Link to the twitter/X profile" /></a>
+                        <a href="https://parthsinha.com" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="Personal website"><img src="assets/icons/browser.png" alt="Website" /></a>
+                        <a href="mailto:sinhaparth555@gmail.com" class="contact-link" aria-label="Send email"><img src="assets/icons/mail.png" alt="Email" /></a>
+                        <a href="tel:+447306179724" class="contact-link" aria-label="Call phone"><img src="assets/icons/phone.png" alt="Phone" /></a>
+                        <a href="https://github.com/sinhaparth5" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><img src="assets/icons/github.png" alt="GitHub" /></a>
+                        <a href="https://www.linkedin.com/in/parth-sinha18/" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><img src="assets/icons/linkedin.png" alt="LinkedIn" /></a>
+                        <a href="https://x.com/sinhaparth555" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="X profile"><img src="assets/icons/x.svg" alt="X" /></a>
                     </div>
                 </div>
                 
                 <div class="profile-image">
-                    <img src="assets/images/profile.webp" alt="Image of {{ profile.name }}" />
+                    <img src="assets/images/profile.webp" alt="Image of {{ profile.name }}" width="120" height="120" loading="lazy" />
                 </div>
             </div>
             
